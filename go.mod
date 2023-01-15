@@ -2,7 +2,10 @@ module go-zero-demo
 
 go 1.19
 
-require github.com/zeromicro/go-zero v1.4.3
+require (
+	github.com/form3tech-oss/jwt-go v3.2.3+incompatible
+	github.com/zeromicro/go-zero v1.4.3
+)
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect

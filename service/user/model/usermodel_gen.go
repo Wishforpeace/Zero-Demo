@@ -90,12 +90,12 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id int64) (*User, error)
 	}
 }
 
-func (m *defaultUserModel) FindOneByNumber(ctx context.Context, number string) (*User, error) {
-	userNumberKey := fmt.Sprintf("%s%v", cacheUserNumberPrefix, number)
+func (m *defaultUserModel) FindOneByNumber(ctx context.Context,name string) (*User, error) {
+	userNumberKey := fmt.Sprintf("%s%v", cacheUserNumberPrefix, name)
 	var resp User
 	err := m.QueryRowIndexCtx(ctx, &resp, userNumberKey, m.formatPrimary, func(ctx context.Context, conn sqlx.SqlConn, v interface{}) (i interface{}, e error) {
 		query := fmt.Sprintf("select %s from %s where `number` = ? limit 1", userRows, m.table)
-		if err := conn.QueryRowCtx(ctx, &resp, query, number); err != nil {
+		if err := conn.QueryRowCtx(ctx, &resp, query, name); err != nil {
 			return nil, err
 		}
 		return resp.Id, nil

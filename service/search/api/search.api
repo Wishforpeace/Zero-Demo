@@ -1,0 +1,27 @@
+syntax = "v1"
+
+type (
+	SearchReq {
+		// 图书馆名称
+		Name string `json:"name"`
+	}
+
+	SearchReply {
+		Name  string `json:"name"`
+		Count int    `json:"count"`
+	}
+)
+
+@server(
+	jwt : Auth
+)
+
+service search-api{
+	@handler search
+	get /search/do (SearchReq) returns (SearchReply)
+}
+
+service search-api{
+	@handler ping
+	get /search/ping
+}

@@ -2,8 +2,8 @@
 package types
 
 type LoginReq struct {
-	Username  string `json:"username"`
-	Passoword string `json:"passoword"`
+	UserNumber  string `json:"usernumber"`
+	Passoword string `json:"password"`
 }
 
 type LoginReply struct {
