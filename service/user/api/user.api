@@ -1,0 +1,21 @@
+syntax = "v1"
+
+type (
+	LoginReq {
+		Username  string `json:"username"`
+		Passoword string `json:"passoword"`
+	}
+	LoginReply {
+		Id           int64  `json:"id"`
+		Name         string `json:"name"`
+		Gender       string `json:"gender"`
+		AccessToken  string `json:"accessToken"`
+		AccessExpire int64  `json:"accessExpire"`
+		RefreshAfter int64  `json:"refreshAfter"`
+	}
+)
+
+service user-api{
+	@handler login
+	post /user/login (LoginReq) returns (LoginReply)
+}
