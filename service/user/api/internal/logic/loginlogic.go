@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/form3tech-oss/jwt-go"
+	"go-zero-demo/common/errorx"
 	"go-zero-demo/service/user/model"
 	"strings"
 	"time"
@@ -31,7 +32,7 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 
 func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginReply, err error) {
 	// todo: add your logic here and delete this line
-	fmt.Println("---------------------------------")
+	//fmt.Println("---------------------------------")
 	if len(strings.TrimSpace(req.UserNumber)) == 0 || len(strings.TrimSpace(req.Passoword)) == 0 {
 		return nil, errors.New("参数错误")
 	}
@@ -42,13 +43,13 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginReply, err err
 	case nil:
 
 	case model.ErrNotFound:
-		return nil, errors.New("用户不存在")
+		return nil, errorx.NewDefaultError("用户不存在")
 	default:
 		return nil, err
 	}
 
 	if userInfo.Password != req.Passoword {
-		return nil, errors.New("用户密码错误")
+		return nil, errorx.NewDefaultError("用户密码不正确")
 	}
 	//------start------
 	now := time.Now().Unix()
