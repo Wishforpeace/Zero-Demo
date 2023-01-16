@@ -2,7 +2,7 @@
 package types
 
 type SearchReq struct {
-	Name string `json:"name"`
+	Name string `form:"name"`
 }
 
 type SearchReply struct {

@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"fmt"
 
 	"go-zero-demo/service/search/api/internal/svc"
 	"go-zero-demo/service/search/api/internal/types"
@@ -25,6 +26,7 @@ func NewSearchLogic(ctx context.Context, svcCtx *svc.ServiceContext) *SearchLogi
 
 func (l *SearchLogic) Search(req *types.SearchReq) (resp *types.SearchReply, err error) {
 	// todo: add your logic here and delete this line
-
-	return
+	logx.Infof("userId: %v", l.ctx.Value("userId")) // 这里的key和生成jwt token时传入的key一致
+	fmt.Println(l.ctx.Value("userId"))
+	return &types.SearchReply{}, nil
 }
