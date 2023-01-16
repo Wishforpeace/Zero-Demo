@@ -8,5 +8,5 @@ CacheRedis:
     Pass:
     Type: node
 Auth:
-  AccessSecret: demo
+  AccessSecret: hellogozero
   AccessExpire: 3600
